@@ -1,17 +1,33 @@
-import {Row, Col, Layout} from 'antd';
-import styled from 'styled-components';
+import React, {Suspense} from 'react';
 
-import LoginForm from './loginForm';
-import Post from './post'
+import {Row, Col, Typography} from 'antd';
+import styled from 'styled-components';
+import Login from './login';
+
+import NotLogin from './notLogin';
+const Post = React.lazy(() => import('./post'));
+
+
+const bool = false;
 
 const Main = () => {
     return (
         <Row justify='center'>
-            <Col span={24}><MainHeader>CREW STAGRAM</MainHeader></Col>
-            <Col span={20}>
+            <ColHeader span={24}>
+                <Typography.Title level={3}>CREW STAGRAM</Typography.Title>
+            </ColHeader>
+            <Col md={2}/>
+            <Col md={22} xs={22}>
                 <Row justify='space-around'>
-                    <Col md={8} xs={24}><LoginForm/></Col>
-                    <Col md={16} xs={24}><Post/></Col>
+                    <Col md={6} xs={24}>
+                        {bool === true ? <Login/> : <NotLogin/>}
+                    </Col>
+                    <Col md={1}/>
+                    <Col md={17} xs={24}>
+                        <Suspense fallback={<div>loading...</div>}>
+                            <Post/>
+                        </Suspense>
+                    </Col>
                 </Row>
             </Col>
         </Row>
@@ -19,8 +35,10 @@ const Main = () => {
 }
 
 export default Main;
-const MainHeader = styled(Layout.Header)`
-  background-color: transparent;
+
+const ColHeader = styled(Col)`
+  padding: 15px 0;
+  margin-bottom: 20px;
   text-align: center;
   color: black;
 `;

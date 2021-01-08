@@ -1,47 +1,182 @@
-import React, {useCallback, useRef} from 'react';
-import {Row, Col, Card, Image} from 'antd';
-import styled from 'styled-components';
+import React, { useState, useEffect, useCallback, useRef } from 'react';
+import { Row, Col, Card, Image, Typography, Input, Button, Comment, Tooltip, Avatar } from 'antd';
 
-const {Meta} = Card;
+import { UserOutlined } from '@ant-design/icons';
+
+import styled from 'styled-components';
+import LazyLoad from 'react-lazyload';
+import axios from 'axios';
+
+
+const { Meta } = Card;
+const { Title } = Typography;
+const { Paragraph } = Typography;
+
+const arr = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,];
+
+const url = 'https://api.unsplash.com/photos/?client_id=gG8KyJv0AZDILSshYX698vmYIr7BRoY8YhAp4204who';
 
 const Post = () => {
+    // 이미지 api
+    // const [img, setImg] = useState([]);
+    // const getImage = () => {
+    //     axios.get(url)
+    //         .then(res => {
+    //             setImg(res.data);
+    //         });
+    // };
+    // useEffect(() => {
+    //     getImage();
+    // }, []);
+
     return (
+        // img.length !== 0 &&
         <Row>
             <Col md={10} xs={24}>
-                <Cards
-                    hoverable
-                    style={{maxWidth: '100%'}}
-                    title={<p>이곳에 일자와 장소 넣기</p>}
-                    cover={
-                        <Image.PreviewGroup>
-                            <Image
-                                width="50%"
-                                height="150px"
-                                src='/images/iu/iu-beautiful-girl-4K.jpg'
-                            />
-                            <Image
-                                width="50%"
-                                height="150px"
-                                src='/images/iu/iu-beautiful-korean-singer-4K.jpg'
-                            />
-                            <Image
-                                width="50%"
-                                height="150px"
-                                src='/images/iu/iu-blueming-4K.jpg'
-                            />
-                        </Image.PreviewGroup>
-                    }
-                >
-                    <Meta title={<p>hi</p>} description="ReactNode type :: 이곳에 댓글, 댓글입력"/>
-                </Cards>
+                {
+                    arr.map((e) => (
+                        <Cards
+                            hoverable
+                            style={{ maxWidth: '100%' }}
+                            title={
+                                <Row align="center">
+                                    <Col md={3} xs={4}><Avatar icon={<UserOutlined />} /></Col>
+                                    <Col md={21} xs={20}>JaePaNi</Col>
+                                </Row>
+                            }
+                            cover={
+                                <Image.PreviewGroup>
+                                    {/* <Image
+                                        width="100%"
+                                        height="300px"
+                                        src={e.urls.full}
+                                    /> */}
+                                    <LazyLoad offset={100} scroll="true" placeholder={<div>loading...</div>} throttle={1000}>
+                                    <Image
+                                        width="50%"
+                                        height="150px"
+                                        src='/images/iu/iu-white-girl-4K.jpg'
+                                    />
+
+                                    <Image
+                                        width="50%"
+                                        height="150px"
+                                        src='/images/iu/iu-beautiful-korean-singer-4K.jpg'
+                                    />
+                                    <Image
+                                        width="50%"
+                                        height="150px"
+                                        src='/images/iu/iu-blueming-4K.jpg'
+                                    />
+                                    </LazyLoad>
+                                </Image.PreviewGroup>
+                            }
+                        >
+                            <Meta
+                                title={<Title level={4}>IU 사진모음</Title>}
+                                description={
+                                    <Row>
+                                        <Col span={24}>
+                                            <Paragraph
+                                                ellipsis={{ rows: 3, expandable: true, symbol: <span>more</span> }}>
+                                                We supply a series of design principles, practical patterns and high
+                                                quality
+                                                design
+                                                resources (Sketch and Axure), to help people create their product
+                                                prototypes
+                                                beautifully
+                                                and efficiently.We supply a series of design principles, practical
+                                                patterns and high
+                                                quality
+                                                design
+                                                resources (Sketch and Axure), to help people create their product
+                                                prototypes
+                                                beautifully
+                                                and efficiently.We supply a series of design principles, practical
+                                                patterns and high
+                                                quality
+                                                design
+                                                resources (Sketch and Axure), to help people create their product
+                                                prototypes
+                                                beautifully
+                                                and efficiently.
+                                            </Paragraph>
+                                        </Col>
+                                        {/*댓글*/}
+                                        <Col span={24}>
+                                            <Comment
+                                                author={<span>Han Solo</span>}
+                                                avatar={
+                                                    <Avatar
+                                                        src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png"
+                                                        alt="Han Solo"
+                                                    />
+                                                }
+                                                content={
+                                                    <p>
+                                                        We supply a series of design principles, practical patterns and
+                                                        high
+                                                        quality
+                                                        design
+                                                        resources (Sketch and Axure), to help people create their
+                                                        product
+                                                        prototypes
+                                                        beautifully
+                                                        and efficiently.
+                                                    </p>
+                                                }
+                                                datetime={
+                                                    <Tooltip title={Date.now()}>
+                                                        <span>{Date.now()}</span>
+                                                    </Tooltip>
+                                                }
+                                            />
+                                        </Col>
+                                        <Col span={24}>
+                                            <Comment
+                                                author={<a>Han Solo</a>}
+                                                avatar={
+                                                    <Avatar
+                                                        src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png"
+                                                        alt="Han Solo"
+                                                    />
+                                                }
+                                                content={
+                                                    <p>
+                                                        We supply a series of design principles, practical patterns and
+                                                        high
+                                                        quality
+                                                        design
+                                                        resources (Sketch and Axure), to help people create their
+                                                        product
+                                                        prototypes
+                                                        beautifully
+                                                        and efficiently.
+                                                    </p>
+                                                }
+                                                datetime={
+                                                    <Tooltip title={Date.now()}>
+                                                        <span>{Date.now()}</span>
+                                                    </Tooltip>
+                                                }
+                                            />
+                                        </Col>
+
+                                        {/*댓글입력칸*/}
+                                        <Col md={20} xs={18}><Input placeholder="댓글" bordered={false} /></Col>
+                                        {/*댓글등록버튼*/}
+                                        <Col md={4} xs={6}><Button type="text">게시</Button></Col>
+                                    </Row>
+                                } />
+                        </Cards>
+                    ))}
             </Col>
         </Row>
-
     );
 }
 
 export default Post;
 
 const Cards = styled(Card)`
-    margin: 30px 0;
+  margin: 30px 0;
 `;

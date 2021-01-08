@@ -24,7 +24,7 @@ const LoginForm = () => {
     return (
         <Wrap>
             <Form size='middle' onFinish={onInputSuccess} onFinishFailed={onInputError}
-                  wrapperCol={{md: 12, xs: 12}}>
+                  wrapperCol={{md: 18, xs: 12}}>
                 <Form.Item name="id" rules={[
                     {
                         required: true,
@@ -58,6 +58,6 @@ const LoginButton = styled(Button)`
 `;
 
 const Wrap = styled.div`
-  position: sticky;
-  top: 15px;
-`;
+    position: sticky;
+    top: 15px;
+    `;

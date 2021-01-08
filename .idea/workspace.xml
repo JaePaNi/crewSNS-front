@@ -2,19 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="750b8f28-4111-436d-933f-ba1b0edef054" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/component/post-copy.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.eslintcache" beforeDir="false" afterPath="$PROJECT_DIR$/.eslintcache" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/img/iu/iu-beautiful-girl-4K.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/public/images/iu/iu-beautiful-girl-4K.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/img/iu/iu-beautiful-korean-singer-4K.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/public/images/iu/iu-beautiful-korean-singer-4K.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/img/iu/iu-blueming-4K.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/public/images/iu/iu-blueming-4K.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/img/iu/iu-cute-girl-4K.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/public/images/iu/iu-cute-girl-4K.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/img/iu/iu-kpop-singer-4K.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/public/images/iu/iu-kpop-singer-4K.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/img/iu/iu-pink-girl-4K.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/public/images/iu/iu-pink-girl-4K.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/img/iu/iu-rose-girl-4K.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/public/images/iu/iu-rose-girl-4K.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/img/iu/iu-sexy-yellow-4K.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/public/images/iu/iu-sexy-yellow-4K.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/img/iu/iu-white-girl-4K.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/public/images/iu/iu-white-girl-4K.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/img/test.png" beforeDir="false" afterPath="$PROJECT_DIR$/public/images/test.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/component/loginForm.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/component/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/main.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/component/post.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/post.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -32,6 +25,14 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
+  </component>
   <component name="ProjectId" id="1mlYztbHX3XlDI2y1gZ7YYECltn" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -41,7 +42,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/component" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
@@ -66,6 +67,9 @@
       <updated>1610069909470</updated>
       <workItem from="1610069911678" duration="9891000" />
       <workItem from="1610082777245" duration="12568000" />
+      <workItem from="1610107561952" duration="4245000" />
+      <workItem from="1610112601035" duration="71000" />
+      <workItem from="1610117579311" duration="1002000" />
     </task>
     <servers />
   </component>
