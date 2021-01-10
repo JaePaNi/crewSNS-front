@@ -1,8 +1,8 @@
 import React, {useState, useEffect, useCallback, useRef} from 'react';
 
 import {Form, Input, Button} from 'antd';
-
 import styled from 'styled-components';
+import {Link} from "react-router-dom";
 
 const LoginForm = () => {
     const [userInput, setUserInput] = useState({id: null, pw: null});
@@ -14,7 +14,7 @@ const LoginForm = () => {
     }, []);
 
     const onInputSuccess = useCallback(e => {
-        setUserInput({id: e.id, pw: e.pw});
+        setUserInput({...e});
     }, []);
 
     const onInputError = useCallback(e => {
@@ -43,7 +43,7 @@ const LoginForm = () => {
                 </Form.Item>
                 <Form.Item>
                     <LoginButton type="primary" htmlType="submit">로그인</LoginButton>
-                    <Button type="ghost">회원가입</Button>
+                    <Button type="ghost"><Link to='/signup'>회원가입</Link></Button>
                 </Form.Item>
             </Form>
         </Wrap>
@@ -58,6 +58,6 @@ const LoginButton = styled(Button)`
 `;
 
 const Wrap = styled.div`
-    position: sticky;
-    top: 15px;
-    `;
+  position: sticky;
+  top: 15px;
+`;

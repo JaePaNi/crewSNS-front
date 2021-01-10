@@ -1,5 +1,4 @@
 import { Card, Typography, Row, Col, Button } from 'antd';
-import { UserOutlined } from '@ant-design/icons';
 
 const { Title } = Typography;
 

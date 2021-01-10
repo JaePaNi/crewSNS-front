@@ -2,7 +2,9 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
 
-import {createGlobalStyle} from 'styled-components';
+import { Router } from 'react-router-dom';
+import { createBrowserHistory } from 'history';
+import { createGlobalStyle } from 'styled-components';
 
 const GlobalStyle = createGlobalStyle`
   * {
@@ -15,11 +17,13 @@ const GlobalStyle = createGlobalStyle`
   }
 `
 
+const customHistory = createBrowserHistory();
+
 ReactDOM.render(
-    <React.StrictMode>
-        <App/>
-        <GlobalStyle/>
-    </React.StrictMode>,
-    document.getElementById('root')
+  <React.StrictMode>
+      <App />
+    <GlobalStyle />
+  </React.StrictMode>,
+  document.getElementById('root')
 )
-;
+  ;

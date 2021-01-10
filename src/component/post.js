@@ -1,75 +1,58 @@
-import React, { useState, useEffect, useCallback, useRef } from 'react';
-import { Row, Col, Card, Image, Typography, Input, Button, Comment, Tooltip, Avatar } from 'antd';
+import React, {useState, useEffect, useCallback, useRef} from 'react';
+import {Row, Col, Card, Image, Typography, Input, Button, Comment, Tooltip, Avatar} from 'antd';
 
-import { UserOutlined } from '@ant-design/icons';
+import {UserOutlined} from '@ant-design/icons';
 
 import styled from 'styled-components';
 import LazyLoad from 'react-lazyload';
 import axios from 'axios';
 
 
-const { Meta } = Card;
-const { Title } = Typography;
-const { Paragraph } = Typography;
-
-const arr = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,];
+const {Meta} = Card;
+const {Title} = Typography;
+const {Paragraph} = Typography;
 
 const url = 'https://api.unsplash.com/photos/?client_id=gG8KyJv0AZDILSshYX698vmYIr7BRoY8YhAp4204who';
 
 const Post = () => {
     // 이미지 api
-    // const [img, setImg] = useState([]);
-    // const getImage = () => {
-    //     axios.get(url)
-    //         .then(res => {
-    //             setImg(res.data);
-    //         });
-    // };
-    // useEffect(() => {
-    //     getImage();
-    // }, []);
+    const [img, setImg] = useState([]);
+    const getImage = () => {
+        axios.get(url)
+            .then(res => {
+                setImg(res.data);
+            });
+    };
+    useEffect(() => {
+        getImage();
+    }, []);
 
     return (
-        // img.length !== 0 &&
+        img.length !== 0 &&
         <Row>
             <Col md={10} xs={24}>
                 {
-                    arr.map((e) => (
+                    img.map((e) => (
                         <Cards
                             hoverable
-                            style={{ maxWidth: '100%' }}
+                            style={{maxWidth: '100%'}}
                             title={
                                 <Row align="center">
-                                    <Col md={3} xs={4}><Avatar icon={<UserOutlined />} /></Col>
+                                    <Col md={3} xs={4}><Avatar icon={<UserOutlined/>}/></Col>
                                     <Col md={21} xs={20}>JaePaNi</Col>
                                 </Row>
                             }
                             cover={
-                                <Image.PreviewGroup>
-                                    {/* <Image
-                                        width="100%"
-                                        height="300px"
-                                        src={e.urls.full}
-                                    /> */}
-                                    <LazyLoad offset={100} scroll="true" placeholder={<div>loading...</div>} throttle={1000}>
-                                    <Image
-                                        width="50%"
-                                        height="150px"
-                                        src='/images/iu/iu-white-girl-4K.jpg'
-                                    />
-
-                                    <Image
-                                        width="50%"
-                                        height="150px"
-                                        src='/images/iu/iu-beautiful-korean-singer-4K.jpg'
-                                    />
-                                    <Image
-                                        width="50%"
-                                        height="150px"
-                                        src='/images/iu/iu-blueming-4K.jpg'
-                                    />
-                                    </LazyLoad>
-                                </Image.PreviewGroup>
+                                <LazyLoad offset={100} scroll="true" placeholder={<div>loading...</div>} height="300px"
+                                          throttle={100}>
+                                    <Image.PreviewGroup>
+                                        <Image
+                                            width="100%"
+                                            height="300px"
+                                            src={e.urls.full}
+                                        />
+                                    </Image.PreviewGroup>
+                                </LazyLoad>
                             }
                         >
                             <Meta
@@ -78,7 +61,7 @@ const Post = () => {
                                     <Row>
                                         <Col span={24}>
                                             <Paragraph
-                                                ellipsis={{ rows: 3, expandable: true, symbol: <span>more</span> }}>
+                                                ellipsis={{rows: 3, expandable: true, symbol: <span>more</span>}}>
                                                 We supply a series of design principles, practical patterns and high
                                                 quality
                                                 design
@@ -163,11 +146,11 @@ const Post = () => {
                                         </Col>
 
                                         {/*댓글입력칸*/}
-                                        <Col md={20} xs={18}><Input placeholder="댓글" bordered={false} /></Col>
+                                        <Col md={20} xs={18}><Input placeholder="댓글" bordered={false}/></Col>
                                         {/*댓글등록버튼*/}
                                         <Col md={4} xs={6}><Button type="text">게시</Button></Col>
                                     </Row>
-                                } />
+                                }/>
                         </Cards>
                     ))}
             </Col>
