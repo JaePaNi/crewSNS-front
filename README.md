@@ -1,5 +1,5 @@
 # crewSNS-front
-### React/Redux/Redux-Thunk/Chakra UI 를 사용한 SNS서비스 :: [프론트앤드]
+### React/Redux/Redux-Thunk/Antdesign UI 를 사용한 SNS서비스 :: [프론트앤드]
 ---
 ## 2021.01.08
 ### `main.js login.js notLogin.js`컴포넌트 구현
