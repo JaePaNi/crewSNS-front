@@ -32,3 +32,13 @@
 
 ## 2021.01.10
 ### `signUp.js`컴포넌트 구현
+
+## 2021.01.18
+### `redux toolkit :: createSlice, createAsyncThunk` 작업 수행
+- `configure.js`  :: `@reduxjs/toolkit`의 `configureStore`를 사용하여 store를 생성하고 옵션으로 `reducer`값을 주었다. `reducer`는 `index.js`의 `rootReducer`를 import한 것이다.
+
+- `index.js` :: `redux`의 `combineReducers`를 사용하여 여러개의 reducer를 하나로 묶어서 `rootReducer`를 통해 export한다.
+
+- `storePost.js` :: 게시글, 즉 post와 관련된 작업을 진행하는 부분으로 `createSlice createAsyncThunk`를 통해 로직을 작성한다. 기존의 `redux`와 사용방법이 많이 달라 배우는데 오랜 시간이 걸린 부분이다.
+
+- `storeUser.js` :: 사용자에 대한 정보 데이터와 관련된 작업을 진행하는 기능이며 `storePost.js`의 `createSlice createAsyncThunk`를 사용했다.
