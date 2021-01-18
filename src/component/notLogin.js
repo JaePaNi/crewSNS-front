@@ -1,12 +1,16 @@
-import React, {useState, useEffect, useCallback, useRef} from 'react';
-
-import {Form, Input, Button} from 'antd';
+import React, { useState, useEffect, useCallback, useRef } from 'react';
+import { Link } from "react-router-dom";
+import { Form, Input, Button } from 'antd';
 import styled from 'styled-components';
-import {Link} from "react-router-dom";
+
+import { useDispatch } from 'react-redux';
+import { login } from '../store/storeUser';
 
 const LoginForm = () => {
-    const [userInput, setUserInput] = useState({id: null, pw: null});
+    const [userInput, setUserInput] = useState({ id: null, pw: null });
     const onloadFocus = useRef(null);
+
+    const dispatch = useDispatch();
 
     //로그인 아닌 경우 아이디 입력 창에 자동 포커싱
     useEffect(() => {
@@ -14,24 +18,28 @@ const LoginForm = () => {
     }, []);
 
     const onInputSuccess = useCallback(e => {
-        setUserInput({...e});
+        setUserInput({ ...e });
     }, []);
 
-    const onInputError = useCallback(e => {
+    useEffect(() => {
+        userInput.id !== null ?
+            userInput.pw !== null ?
+                dispatch(login({...userInput})) : console.log('undefined') : console.log('undefined');
+    }, [userInput]);
 
-    });
+    const onInputError = useCallback(e => { });
 
     return (
         <Wrap>
             <Form size='middle' onFinish={onInputSuccess} onFinishFailed={onInputError}
-                  wrapperCol={{md: 18, xs: 12}}>
+                wrapperCol={{ md: 18, xs: 12 }}>
                 <Form.Item name="id" rules={[
                     {
                         required: true,
                         message: '계정 입력'
                     }
                 ]}>
-                    <Input placeholder="아이디" ref={onloadFocus}/>
+                    <Input placeholder="아이디" ref={onloadFocus} />
                 </Form.Item>
                 <Form.Item name="pw" rules={[
                     {
@@ -39,7 +47,7 @@ const LoginForm = () => {
                         message: '비밀번호 입력'
                     }
                 ]}>
-                    <Input type="password" placeholder="비밀번호"/>
+                    <Input type="password" placeholder="비밀번호" />
                 </Form.Item>
                 <Form.Item>
                     <LoginButton type="primary" htmlType="submit">로그인</LoginButton>

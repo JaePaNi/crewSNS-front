@@ -2,19 +2,19 @@ import React, { Suspense } from 'react';
 
 import { Row, Col } from 'antd';
 import Login from './login';
+import { useSelector } from 'react-redux';
 
 import NotLogin from './notLogin';
 const Post = React.lazy(() => import('./post'));
 
-const bool = true;
-
 const Main = () => {
+    const isLogin = useSelector(state => state.storeUser.isLogin);
     return (
         <Row justify='center'>
             <Col md={2} />
             <Col md={22} xs={22}>
                 <Row justify='space-around'>
-                    <Col md={6} xs={24}>{bool === true ? <Login /> : <NotLogin />}
+                    <Col md={6} xs={24}>{isLogin === true ? <Login /> : <NotLogin />}
                     </Col>
                     <Col md={1} />
                     <Col md={17} xs={24}>
