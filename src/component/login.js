@@ -1,4 +1,4 @@
-import { useCallback } from 'react';
+import { memo, useCallback } from 'react';
 import { Card, Typography, Row, Col, Button } from 'antd';
 
 import { useDispatch, useSelector } from 'react-redux';
@@ -23,4 +23,4 @@ const Login = () => {
     );
 }
 
-export default Login;
+export default memo(Login);

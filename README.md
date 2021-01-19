@@ -42,3 +42,9 @@
 - `storePost.js` :: 게시글, 즉 post와 관련된 작업을 진행하는 부분으로 `createSlice createAsyncThunk`를 통해 로직을 작성한다. 기존의 `redux`와 사용방법이 많이 달라 배우는데 오랜 시간이 걸린 부분이다.
 
 - `storeUser.js` :: 사용자에 대한 정보 데이터와 관련된 작업을 진행하는 기능이며 `storePost.js`의 `createSlice createAsyncThunk`를 사용했다.
+
+## 2021.01.19
+### `createAsyncThunk` 작업 및 데이터 작업
+- `storePost.js` :: `createAsyncThunk`에서 API를 활용하여 이미지 데이터 받아오는 작업을 수행하였고, `initialState`에 받아온 데이터를 `forEach`를 활용하여 입력하는 작업진행.
+
+- `post.js` :: 댓글기능을 입력하고 입력받은 댓글을 `storePost.js`의 `initialState`에 넣는 작업진행.

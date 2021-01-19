@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback, useRef } from 'react';
+import React, { useState, useEffect, useCallback, useRef, memo } from 'react';
 import { Link } from "react-router-dom";
 import { Form, Input, Button } from 'antd';
 import styled from 'styled-components';
@@ -24,7 +24,7 @@ const LoginForm = () => {
     useEffect(() => {
         userInput.id !== null ?
             userInput.pw !== null ?
-                dispatch(login({...userInput})) : console.log('undefined') : console.log('undefined');
+                dispatch(login({ ...userInput })) : console.log('undefined') : console.log('undefined');
     }, [userInput]);
 
     const onInputError = useCallback(e => { });
@@ -58,7 +58,7 @@ const LoginForm = () => {
     );
 }
 
-export default LoginForm;
+export default memo(LoginForm);
 
 
 const LoginButton = styled(Button)`
