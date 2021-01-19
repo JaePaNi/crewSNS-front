@@ -1,21 +1,23 @@
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { axiosPost } from '../axios/axiosPost';
+import {createAsyncThunk, createSlice} from '@reduxjs/toolkit';
+import {axiosPost} from '../axios/axiosPost';
 
 const initialState = {
     loading: false,
     error: false,
-    postUser: null,
-    postImage: [],
-    postTitle: null,
-    postContent: null,
-    postCreateDate: null,
-    postReply: [
-        {
-            replyUser: null,
-            replyContent: null,
-            replyCreateDate: null,
-        }
-    ]
+    Post: [{
+        postUser: null,
+        postImage: [],
+        postTitle: null,
+        postContent: null,
+        postCreateDate: null,
+        postReply: [
+            {
+                replyUser: null,
+                replyContent: null,
+                replyCreateDate: null,
+            }
+        ]
+    }]
 };
 
 export const fetchPost = createAsyncThunk(
@@ -29,21 +31,62 @@ export const fetchPost = createAsyncThunk(
 const postSlice = createSlice({
     name: 'post',
     initialState,
-    reducers: {},
+    reducers: {
+        registReply: ((state, action) => {
+            const {inputReply, userNickname, time} = action.payload;
+            console.log(inputReply, userNickname, time);
+            console.log(state.Post.length);
+            state.Post.push(...state.Post.map(
+                e => e,
+                e.postReply.push({
+                    replyUser: userNickname,
+                    replyContent: inputReply,
+                    replyCreateDate: time,
+                })));
+        });
+    },
     extraReducers: {
-        [fetchPost.pending.type]: (state, action) => {
+        [fetchPost.pending]: (state, action) => {
             console.log(`pending :: ${action}`);
             state.loading = true;
         },
-        [fetchPost.fulfilled.type]: (state, action) => {
-            console.log(`fulfilled :: ${action.payload}`);
-            // state.postImage.push(action.payload.map(e => e.urls.full));
+        [fetchPost.fulfilled]: (state, action) => {
+            for (const key in action.payload) {
+                state.Post.push({
+                    postUser: action.payload[key].user.instagram_username,
+                    postImage: [action.payload[key].urls.regular],
+                    postTitle: action.payload[key].user.name,
+                    postContent: action.payload[key].user.bio,
+                    postCreateDate: action.payload[key].user.updated_at,
+                    postReply: [{
+                        replyUser: 'jaepani',
+                        replyContent: 'hi my name is jaepani',
+                        replyCreateDate: action.payload[key].user.updated_at,
+                    }]
+                });
+            }
         },
-        [fetchPost.rejected.type]: (state, action) => {
-            console.log(`rejected :: ${action}`);
+        [fetchPost.rejected]: (state, action) => {
+            state.loading = false;
+            state.error = true;
+            state.Post = [{
+                postUser: null,
+                postImage: [],
+                postTitle: null,
+                postContent: null,
+                postCreateDate: null,
+                postReply: [
+                    {
+                        replyUser: null,
+                        replyContent: null,
+                        replyCreateDate: null,
+                    }
+                ]
+            }]
+            console.log(`rejected :: ${action.error.message()}`);
         }
     }
 });
 
-// export const { getPost } = postSlice.actions;
+export const {registReply} = postSlice.actions;
 export default postSlice.reducer;
