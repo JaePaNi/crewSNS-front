@@ -8,7 +8,7 @@ import LazyLoad from 'react-lazyload';
 
 import { useDispatch, useSelector } from 'react-redux';
 
-import { fetchPost, registReply } from '../store/storePost';
+import { fetchPost, registReply } from '../store/storeGetPost';
 
 const { Meta } = Card;
 const { Title } = Typography;
@@ -18,7 +18,7 @@ const paragraphData = { rows: 3, expandable: true, symbol: <span>more</span> }
 
 const Post = () => {
     const dispatch = useDispatch();
-    const { Post, loading } = useSelector(state => state.storePost);
+    const { Post, loading } = useSelector(state => state.storeGetPost);
     const { isLogin, userNickname } = useSelector(state => state.storeUser);
 
     const [inputReply, setInputReply] = useState('');

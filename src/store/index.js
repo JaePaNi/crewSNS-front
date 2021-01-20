@@ -1,8 +1,10 @@
-import { combineReducers } from 'redux';
+import {combineReducers} from 'redux';
 import storeUser from './storeUser';
-import storePost from './storePost';
+import storeGetPost from "./storeGetPost";
+import storeAddPost from "./storeAddPost";
 
 export const rootReducer = combineReducers({
     storeUser: storeUser,
-    storePost: storePost,
+    storeGetPost: storeGetPost,
+    storeAddPost: storeAddPost,
 });

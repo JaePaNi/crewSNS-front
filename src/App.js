@@ -1,9 +1,11 @@
 import { Row, Col, Typography } from 'antd';
 import { BrowserRouter, Route } from 'react-router-dom';
+
 import styled from 'styled-components';
 
 import Main from './component/main';
 import SignUp from './component/signUp';
+import AddPost from './component/postAdd';
 
 function App() {
     return (
@@ -13,8 +15,9 @@ function App() {
             </ColHeader>
             <Col span={24}>
                 <BrowserRouter>
-                    <Route exact path='/' component={Main} />
-                    <Route path='/signup' component={SignUp} />
+                    <Route exact path='/'><Main /></Route>
+                    <Route exact path='/signup'><SignUp /></Route>
+                    <Route exact path='/addpost'><AddPost /></Route>
                 </BrowserRouter>
             </Col>
         </Row>

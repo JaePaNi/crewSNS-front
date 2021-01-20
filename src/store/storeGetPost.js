@@ -1,23 +1,22 @@
 import {createAsyncThunk, createSlice} from '@reduxjs/toolkit';
-import axios from 'axios';
+import {axiosPost} from '../axios/axiosPost';
 
 const initialState = {
     loading: false,
     error: false,
     Post: []
-};
+}
 
-const getImageUrl = 'https://api.unsplash.com/photos/?client_id=gG8KyJv0AZDILSshYX698vmYIr7BRoY8YhAp4204who';
 export const fetchPost = createAsyncThunk(
     'post/fetchPost',
     async () => {
-        const payload = await axios.get(getImageUrl).then(res => res.data);
+        const payload = await axiosPost();
         return payload;
     }
 )
 
-const postSlice = createSlice({
-    name: 'post',
+const getPostSlice = createSlice({
+    name: 'getPost',
     initialState,
     reducers: {
         registReply: ((state, action) => {
@@ -61,8 +60,8 @@ const postSlice = createSlice({
     }
 });
 
-export const {registReply, imageUpload} = postSlice.actions;
-export default postSlice.reducer;
+export const {registReply, imageUpload} = getPostSlice.actions;
+export default getPostSlice.reducer;
 
 
 // const initialState = {

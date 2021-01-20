@@ -14,8 +14,7 @@ const Main = () => {
             <Col md={2} />
             <Col md={22} xs={22}>
                 <Row justify='space-around'>
-                <Col md={6} xs={24}>{isLogin === true ? <Login /> : <NotLogin />}</Col>
-                    {/* <Col md={6} xs={24}>{isLogin === true ? login : notLogin}</Col> */}
+                    <Col md={6} xs={24}>{isLogin === true ? <Login /> : <NotLogin />}</Col>
                     <Col md={1} />
                     <Col md={17} xs={24}>
                         <Suspense fallback={<div>loading...</div>}>
