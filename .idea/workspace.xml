@@ -4,8 +4,6 @@
     <list default="true" id="750b8f28-4111-436d-933f-ba1b0edef054" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.eslintcache" beforeDir="false" afterPath="$PROJECT_DIR$/.eslintcache" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/component/post.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/post.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/store/storePost.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/storePost.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -73,6 +71,7 @@
       <workItem from="1611022427714" duration="11811000" />
       <workItem from="1611059936660" duration="6000" />
       <workItem from="1611059943727" duration="5012000" />
+      <workItem from="1611104228735" duration="307000" />
     </task>
     <servers />
   </component>

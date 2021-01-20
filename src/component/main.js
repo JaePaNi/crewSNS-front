@@ -5,7 +5,7 @@ import { useSelector } from 'react-redux';
 
 import Login from './login';
 import NotLogin from './notLogin';
-const Post = React.lazy(() => import('./post'));
+const PostList = React.lazy(() => import('./postList'));
 
 const Main = () => {
     const isLogin = useSelector(state => state.storeUser.isLogin);
@@ -19,7 +19,7 @@ const Main = () => {
                     <Col md={1} />
                     <Col md={17} xs={24}>
                         <Suspense fallback={<div>loading...</div>}>
-                            <Post />
+                            <PostList />
                         </Suspense>
                     </Col>
                 </Row>
