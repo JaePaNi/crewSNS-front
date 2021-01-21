@@ -2,18 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="750b8f28-4111-436d-933f-ba1b0edef054" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/store/storeAddPost.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/store/storeGetPost.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.eslintcache" beforeDir="false" afterPath="$PROJECT_DIR$/.eslintcache" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/component/login.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/login.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/component/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/main.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/component/postAdd.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/postAdd.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/component/postList.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/postList.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/store/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/store/storePost.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/storePost.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/component/signUp.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/signUp.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/store/storeUser.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/storeUser.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -47,7 +41,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/store" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
@@ -84,6 +78,7 @@
       <workItem from="1611059943727" duration="5012000" />
       <workItem from="1611104228735" duration="307000" />
       <workItem from="1611125862315" duration="4059000" />
+      <workItem from="1611234942124" duration="4145000" />
     </task>
     <servers />
   </component>

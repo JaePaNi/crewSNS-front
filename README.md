@@ -56,3 +56,11 @@
 - 다음으로 데이터를 전송하기 위해서 `formData`를 사용했는데 `formData`에 대한 부분에 경험이 많이 없어서 어떻게 동작하고 어떤식으로 데이터가 전송되며, 어떻게 사용해야 하는지를 잘 몰라 짧은 시간안에 속성으로 습득함. 하지만 `formData`에 대한 부분은 나중에라도 자세히 학습을 할 필요.
 
 - 따라서 `postAdd.js` 컴포넌트에서 타이틀, 콘텐츠, 이미지를 전부 작성하면 `formData.append`를 사용해 추가하고 `dispatch`로 바로 store에 전송했다. 향후 백엔드까지 구현하면 store에서 바로 API로 백엔드에 전송할 예정.
+
+## 2021.01.21
+### `storeUser.js` 회원가입 리덕스 작업, `signUp.js` 컴포넌트 회원가입 작업
+- `storeUser.js`에서 회원가입 처리를 위한 리덕스 작업을 진행했다. 또한 리덕스 스토어 값에 따라 컴포넌트 화면부분도 처리해야 하는 과정까지 진행하였다.
+
+- `storeUser.js initialState`의 `loading, error, regist`를 가지고 `signUp.js`컴포넌트 로직을 처리했다.
+
+- `loading, regist`가 `true`인 경우 회원가입 성공으로, `loading`은 `false, error`가 `ture`인 경우는 회원가입 실패로 처리했다.
