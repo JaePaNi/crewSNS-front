@@ -5,6 +5,7 @@ import styled from 'styled-components';
 
 import { useDispatch } from 'react-redux';
 import { login } from '../store/storeUser';
+import { fetchLogin } from '../store/thunk/thunkUser';
 
 const LoginForm = () => {
     const [userInput, setUserInput] = useState({ id: null, pw: null });
@@ -18,6 +19,7 @@ const LoginForm = () => {
     }, []);
 
     const onInputSuccess = useCallback(e => {
+        dispatch(fetchLogin({ id: 'test', pw: '123' }));
         setUserInput({ ...e });
     }, []);
 

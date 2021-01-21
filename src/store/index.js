@@ -1,4 +1,4 @@
-import {combineReducers} from 'redux';
+import { combineReducers } from 'redux';
 import storeUser from './storeUser';
 import storeGetPost from "./storeGetPost";
 import storeAddPost from "./storeAddPost";
