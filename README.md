@@ -64,3 +64,11 @@
 - `storeUser.js initialState`의 `loading, error, regist`를 가지고 `signUp.js`컴포넌트 로직을 처리했다.
 
 - `loading, regist`가 `true`인 경우 회원가입 성공으로, `loading`은 `false, error`가 `ture`인 경우는 회원가입 실패로 처리했다.
+
+## 2021.01.22
+### `storeUser.js` 로그인 리덕스 작업, `notLogin.js` 컴포넌트 로그인 작업
+- `storeUser.js`에서 로그인 처리를 위한 리덕스 작업을 진행했다. 그리고 axios로 로그인 요청을 보낼 때 옵션을 추가해주었다.
+
+- `axios`로 로그인 요청은 `cookie`를 받아야 하는데 `frontend, backend` 양쪽에서 모두 작업을 해주어야 한다. `frontend`의 `axios` 옵션은 `withCredentials : true`로 해주면 된다.
+
+- `withCredentials`를 `true`로 변경해주면 자격증명을 사용하여 크로스사이트 접근 제어 요청을 할 수 있다.

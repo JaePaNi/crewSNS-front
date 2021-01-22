@@ -2,23 +2,23 @@ import { memo, useCallback } from 'react';
 import { Card, Typography, Row, Col, Button } from 'antd';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { logout } from '../store/storeUser';
 import styled from 'styled-components';
 
 const { Title } = Typography;
 
 const Login = () => {
     const dispatch = useDispatch();
-    const userNickname = useSelector(state => state.storeUser.userNickname);
+    const { userNickname, userId } = useSelector(state => state.storeUser);
     const onClickLogout = useCallback(() => {
-        dispatch(logout());
+        // dispatch(logout());
     }, []);
 
     return (
         <Wrap>
             <Card size="small" hoverable>
                 <Row>
-                    <Col span={24} style={{ textAlign: 'center' }}><Title level={4}>{userNickname}님</Title></Col>
+                    <Col span={24} style={{ textAlign: 'center' }}>
+                        <Title level={4}>{userNickname === '#' ? userId : userNickname}님</Title></Col>
                     <ColButton span={24}>
                         <Link to='/addpost'>
                             <Button type='ghost' block>포스트 작성</Button>

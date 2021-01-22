@@ -1,14 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="750b8f28-4111-436d-933f-ba1b0edef054" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.eslintcache" beforeDir="false" afterPath="$PROJECT_DIR$/.eslintcache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/component/signUp.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/signUp.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/store/storeUser.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/storeUser.js" afterDir="false" />
-    </list>
+    <list default="true" id="750b8f28-4111-436d-933f-ba1b0edef054" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -78,7 +71,7 @@
       <workItem from="1611059943727" duration="5012000" />
       <workItem from="1611104228735" duration="307000" />
       <workItem from="1611125862315" duration="4059000" />
-      <workItem from="1611234942124" duration="4145000" />
+      <workItem from="1611234942124" duration="4259000" />
     </task>
     <servers />
   </component>

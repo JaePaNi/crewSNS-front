@@ -1,16 +1,16 @@
-import React, {useState, useEffect, useCallback, useRef} from 'react';
-import {Form, Input, Button, Row, Col} from 'antd';
+import React, { useState, useEffect, useCallback, useRef } from 'react';
+import { Form, Input, Button, Row, Col } from 'antd';
 import styled from 'styled-components';
-import {useHistory} from 'react-router-dom';
-import {useSelector, useDispatch} from 'react-redux';
-import {registReset} from '../store/storeUser';
-import {fetchRegist} from '../store/thunk/thunkUser';
+import { useHistory } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
+import { registReset } from '../store/storeUser';
+import { fetchRegist } from '../store/thunk/thunkUser';
 
 const SignUp = () => {
-    const [inputData, setInputData] = useState({pw: null, pwCheck: false});
+    const [inputData, setInputData] = useState({ pw: null, pwCheck: false });
     const onloadFocus = useRef();
     const dispatch = useDispatch();
-    const {loading, regist, error} = useSelector(state => state.storeUser);
+    const { loading, regist, error } = useSelector(state => state.storeUser);
     const history = useHistory();
 
     //사용할 아이디 비밀번호 전부 입력 후 회원가입 버튼 누르면 createAsyncThunk를 통해 백엔드에 회원가입 요청을 보낸다.
@@ -21,14 +21,14 @@ const SignUp = () => {
 
     //비밀번호를 서로 비교사기 위해서 useState inputData에 저장한다.
     const insertPassword = useCallback(e => {
-        setInputData({...inputData, pw: e.target.value})
+        setInputData({ ...inputData, pw: e.target.value })
     }, [inputData]);
 
     //사용자가 입력한 비밀번호와 비밀번호 확인이 서로 같은지 확인한다.
     const passwordCheck = useCallback(e => {
         inputData.pw === e.target.value
-            ? setInputData({...inputData, pwCheck: true})
-            : setInputData({...inputData, pwCheck: false})
+            ? setInputData({ ...inputData, pwCheck: true })
+            : setInputData({ ...inputData, pwCheck: false })
     }, [inputData]);
 
     //회원가입 버튼을 누르고 백엔드에서 응답이 오면 성공/실패 여부를 판단한다.
@@ -52,14 +52,14 @@ const SignUp = () => {
     return (
         <Row justify='center'>
             <Col md={6} xs={22}>
-                <Form size='middle' onFinish={onInputSuccess} wrapperCol={{md: 24, xs: 12}}>
+                <Form size='middle' onFinish={onInputSuccess} wrapperCol={{ md: 24, xs: 12 }}>
                     <Form.Item name="id" rules={[
                         {
                             required: true,
                             message: '사용할 계정 입력해주세요'
                         }
                     ]}>
-                        <Input placeholder="사용할 아이디" ref={onloadFocus}/>
+                        <Input placeholder="사용할 아이디" ref={onloadFocus} />
                     </Form.Item>
                     <Form.Item name="pw" rules={[
                         {
@@ -67,15 +67,15 @@ const SignUp = () => {
                             message: '사용할 비밀번호 입력해주세요'
                         }
                     ]}>
-                        <Input.Password placeholder="사용할 비밀번호" onChange={insertPassword}/>
+                        <Input.Password placeholder="사용할 비밀번호" onChange={insertPassword} />
                     </Form.Item>
 
                     <Form.Item name="pwCheck">
-                        <Input.Password placeholder="비밀번호 확인" onChange={passwordCheck}/>
+                        <Input.Password placeholder="비밀번호 확인" onChange={passwordCheck} />
                         {inputData.pwCheck === false ? <PwCheck>비밀번호가 다릅니다.</PwCheck> : undefined}
                     </Form.Item>
                     <Form.Item>
-                        <LoginButton type="primary" htmlType="submit" block>회원가입</LoginButton>
+                        <LoginButton type="primary" htmlType="submit" loading={loading && true} block>회원가입</LoginButton>
                     </Form.Item>
                 </Form>
             </Col>
