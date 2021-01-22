@@ -1,25 +1,14 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
-const url = 'http://localhost:5000';
+console.log(process.env.REACT_APP_URL);
 
 // 로그인
 export const fetchLogin = createAsyncThunk(
-    'user/fetchPost',
-    async (data) => {
-        console.log(data);
-        const payload = await axios({
-            method: 'post',
-            headers: {
-                "Content-Type": "application/json"
-            },
-            url: url,
-            data: {
-                "id": data.id,
-                "pw": data.pw
-            }
-        });
-        console.log(`fetchLogin :: ${payload}`);
+    'user/getchLogin',
+    async (userInsertInfo) => {
+        const payload = await axios.post(`${process.env.REACT_APP_URL}/user/login`, userInsertInfo);
+        console.log('!!!!!', payload);
         return payload;
     }
 );
@@ -28,17 +17,8 @@ export const fetchLogin = createAsyncThunk(
 export const fetchRegist = createAsyncThunk(
     'user/fetchRegist',
     async (userInsertInfo) => {
-        const payload = await axios({
-            method: 'post',
-            headers: {
-                "Content-Type": "application/json"
-            },
-            url: `${url}/user`,
-            data: {
-                'id': userInsertInfo.id,
-                'pw': userInsertInfo.pw
-            }
-        });
+        const payload = await axios.post(`${process.env.REACT_APP_URL}/user`, userInsertInfo);
+        // console.log(payload.status);
         return payload;
     }
 );

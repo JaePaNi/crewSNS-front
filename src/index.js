@@ -1,11 +1,13 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
 
-import { createBrowserHistory } from 'history';
 import { createGlobalStyle } from 'styled-components';
 import { Provider } from 'react-redux';
 import store from './store/configure';
+
+import dotenv from 'dotenv';
+dotenv.config();
 
 const GlobalStyle = createGlobalStyle`
   * {
@@ -17,9 +19,6 @@ const GlobalStyle = createGlobalStyle`
     background-color: #fff3e0;
   }
 `
-
-const customHistory = createBrowserHistory();
-
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
@@ -28,5 +27,4 @@ ReactDOM.render(
     <GlobalStyle />
   </React.StrictMode>,
   document.getElementById('root')
-)
-  ;
+);

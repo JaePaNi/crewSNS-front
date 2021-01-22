@@ -1,40 +1,27 @@
-import React, { useState, useEffect, useCallback, useRef, memo } from 'react';
-import { Link } from "react-router-dom";
+import React, { useEffect, useCallback, useRef, memo } from 'react';
 import { Form, Input, Button } from 'antd';
 import styled from 'styled-components';
-
+import { Link } from "react-router-dom";
 import { useDispatch } from 'react-redux';
-import { login } from '../store/storeUser';
 import { fetchLogin } from '../store/thunk/thunkUser';
 
 const LoginForm = () => {
-    const [userInput, setUserInput] = useState({ id: null, pw: null });
-    const onloadFocus = useRef(null);
+    const onloadFocus = useRef();
 
     const dispatch = useDispatch();
 
-    //로그인 아닌 경우 아이디 입력 창에 자동 포커싱
+    const onInputSuccess = useCallback(e => {
+        dispatch(fetchLogin({ ...e }));
+    }, []);
+
+    //화면이 로딩되면 로그인 아이디에 자동 포커싱
     useEffect(() => {
         onloadFocus.current.focus();
     }, []);
 
-    const onInputSuccess = useCallback(e => {
-        dispatch(fetchLogin({ id: 'test', pw: '123' }));
-        setUserInput({ ...e });
-    }, []);
-
-    useEffect(() => {
-        userInput.id !== null ?
-            userInput.pw !== null ?
-                dispatch(login({ ...userInput })) : console.log('undefined') : console.log('undefined');
-    }, [userInput]);
-
-    const onInputError = useCallback(e => { });
-
     return (
         <Wrap>
-            <Form size='middle' onFinish={onInputSuccess} onFinishFailed={onInputError}
-                wrapperCol={{ md: 18, xs: 12 }}>
+            <Form size='middle' onFinish={onInputSuccess} wrapperCol={{ md: 18, xs: 12 }}>
                 <Form.Item name="id" rules={[
                     {
                         required: true,
