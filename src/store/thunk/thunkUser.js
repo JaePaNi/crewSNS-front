@@ -14,11 +14,33 @@ export const fetchRegist = createAsyncThunk(
 
 // 로그인
 export const fetchLogin = createAsyncThunk(
-    'user/getchLogin',
+    'user/fetchLogin',
     async (userInsertInfo) => {
         const payload = await axios.post('/user/login', userInsertInfo, {
             withCredentials: true,
-        }); 
+        });
+        return payload;
+    }
+);
+
+// 로그인 후 쿠키정보로 사용자 정보 가져오기
+export const fetchLoadUser = createAsyncThunk(
+    'user/fetchLoadUser',
+    async () => {
+        const payload = await axios.get('/user', {
+            withCredentials: true,
+        });
+        return payload;
+    }
+);
+
+// 로그아웃
+export const fetchLogout = createAsyncThunk(
+    'user/fetchLogout',
+    async () => {
+        const payload = await axios.post('/user/logout', {}, {
+            withCredentials: true,
+        });
         return payload;
     }
 );

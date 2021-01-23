@@ -1,6 +1,8 @@
+import React, { useEffect } from 'react';
 import { Row, Col, Typography } from 'antd';
 import { BrowserRouter, Route } from 'react-router-dom';
-
+import { useSelector, useDispatch } from 'react-redux';
+import { fetchLoadUser } from './store/thunk/thunkUser';
 import styled from 'styled-components';
 
 import Main from './component/main';
@@ -8,6 +10,12 @@ import SignUp from './component/signUp';
 import AddPost from './component/postAdd';
 
 function App() {
+    const { isLogin } = useSelector(state => state.storeUser);
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        !isLogin && dispatch(fetchLoadUser());
+    }, []);
     return (
         <Row>
             <ColHeader span={24}>

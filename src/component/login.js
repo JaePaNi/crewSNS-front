@@ -2,6 +2,7 @@ import { memo, useCallback } from 'react';
 import { Card, Typography, Row, Col, Button } from 'antd';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
+import { fetchLogout } from '../store/thunk/thunkUser';
 import styled from 'styled-components';
 
 const { Title } = Typography;
@@ -10,7 +11,7 @@ const Login = () => {
     const dispatch = useDispatch();
     const { userNickname, userId } = useSelector(state => state.storeUser);
     const onClickLogout = useCallback(() => {
-        // dispatch(logout());
+        dispatch(fetchLogout());
     }, []);
 
     return (
