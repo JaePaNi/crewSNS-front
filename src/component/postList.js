@@ -4,7 +4,8 @@ import { UserOutlined } from '@ant-design/icons';
 import styled from 'styled-components';
 import LazyLoad from 'react-lazyload';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchPost, registReply } from '../store/storePost';
+// import { registReply } from '../store/storePost';
+import { fetchPost, fetchReply } from '../store/thunk/thunkPost';
 
 const { Meta } = Card;
 const { Title } = Typography;
@@ -14,26 +15,27 @@ const paragraphData = { rows: 3, expandable: true, symbol: <span>more</span> }
 
 const Post = () => {
     const dispatch = useDispatch();
-    const { Post, loading } = useSelector(state => state.storePost);
-    const { isLogin, userNickname } = useSelector(state => state.storeUser);
+    const { Post, loading, PostImages, PostReply } = useSelector(state => state.storePost);
+    const { isLogin, userNickname, userId } = useSelector(state => state.storeUser);
 
-    const [inputReply, setInputReply] = useState('');
+    const [replyContent, setReplyContent] = useState('');
 
     useEffect(() => {
         dispatch(fetchPost());
     }, []);
 
     const onChangeReply = useCallback(e => {
-        setInputReply(e.target.value);
+        setReplyContent(e.target.value);
     }, []);
 
-    const onClickReply = useCallback(index => {
-        const time = new Date().getDate();
+    const onClickReply = useCallback(index => () => {
+        // const time = new Date().getDate()
+        console.log('&&&&&&&&&', index);
         if (isLogin) {
-            inputReply !== '' && dispatch(registReply({ inputReply, userNickname, time, index }));
-            setInputReply('');
+            replyContent !== '' && dispatch(fetchReply({ replyContent, userId, index }));
+            setReplyContent('');
         } else alert('로그인이 필요합니다.');
-    }, [inputReply, isLogin]);
+    }, [replyContent, isLogin]);
 
     return (
         loading &&
@@ -41,49 +43,51 @@ const Post = () => {
             <Col md={10} xs={24}>
                 {
                     Post.map((e, index) => (
-                        index !== 0 &&
                         <Cards
                             hoverable
                             style={{ maxWidth: '100%' }}
                             title={
                                 <Row align="center">
-                                    <Col md={3} xs={4}><Avatar icon={<UserOutlined />} /></Col>
-                                    <Col md={21} xs={20}>{e.postUser}</Col>
+                                    {/* <Col md={3} xs={4}><Avatar icon={<UserOutlined />} /></Col> */}
+                                    <Col md={21} xs={20}>{e.post_author}</Col>
                                 </Row>
                             }
+                            이미지 부분
                             cover={
                                 <LazyLoad offset={100} scroll="true" placeholder={<div>loading...</div>} height="300px"
                                     throttle={100}>
-                                    <Image.PreviewGroup>
-                                        <Image
-                                            width="100%"
-                                            height="300px"
-                                            src={e.postImage[0]}
-                                        />
-                                    </Image.PreviewGroup>
+                                    {PostImages.map(img => (
+                                        <Image.PreviewGroup>
+                                            <Image
+                                                height="400px"
+                                                src={e.post_id === img.image_author && img.image_link}
+                                            />
+                                        </Image.PreviewGroup>
+                                    ))}
                                 </LazyLoad>
                             }
                         >
                             <Meta
-                                title={<Title level={4}>{e.postTitle}</Title>}
+                                title={<Title level={4}>{e.post_title}</Title>}
                                 description={
                                     <Row>
                                         <Col span={24}>
                                             <Paragraph
                                                 ellipsis={paragraphData}>
-                                                {e.postContent}
+                                                {e.post_content}
                                             </Paragraph>
                                         </Col>
                                         {/*댓글*/}
                                         {
-                                            e.postReply.map(reply => (
+                                            PostReply.map(reply => (
+                                                reply.reply_post_author === e.post_id &&
                                                 <Col span={24}>
                                                     <Comment
-                                                        author={<span>{reply.replyUser}</span>}
-                                                        content={<p>{reply.replyContent}</p>}
+                                                        author={<span>{reply.reply_user_author}</span>}
+                                                        content={<p>{reply.reply_content}</p>}
                                                         datetime={
-                                                            <Tooltip title={reply.replyCreateDate}>
-                                                                <span>{reply.replyCreateDate}</span>
+                                                            <Tooltip title={reply.reply_createdate}>
+                                                                <span>{reply.reply_createdate}</span>
                                                             </Tooltip>
                                                         }
                                                     />
@@ -92,9 +96,10 @@ const Post = () => {
                                         }
                                         {/*댓글입력칸*/}
                                         <Col md={20} xs={18}>
-                                            <Input onChange={onChangeReply} value={inputReply} placeholder="댓글" bordered={false} onPressEnter={() => onClickReply(index)} /></Col>
+                                            <Input onChange={onChangeReply} value={replyContent} placeholder="댓글..." bordered={false} onPressEnter={onClickReply(index)} />
+                                        </Col>
                                         {/* 댓글등록버튼 */}
-                                        <Col md={4} xs={6}><Button onClick={() => onClickReply(index)} type="text">게시</Button></Col>
+                                        <Col md={4} xs={6}><Button onClick={onClickReply(e.post_id)} type="text">게시</Button></Col>
                                     </Row>
                                 } />
                         </Cards>

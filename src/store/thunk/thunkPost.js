@@ -8,7 +8,6 @@ export const fetchCreatePost = createAsyncThunk(
     'post/fetchCreatePost',
     async (formData) => {
         const payload = await axios.post('/post/postCreate', formData);
-        console.log('thunkPost Create :: ', payload);
         return payload;
     }
 );
@@ -17,8 +16,26 @@ export const fetchCreatePost = createAsyncThunk(
 export const fetchImages = createAsyncThunk(
     'post/fetchImages',
     async (formData) => {
-        console.log(formData.keys.length);
         const payload = await axios.post('/post/postImages', formData);
+        return payload;
+    }
+);
+
+// 포스트 불러오기
+export const fetchPost = createAsyncThunk(
+    'post/fetchPost',
+    async () => {
+        const payload = await axios.get('/post/postCall').then(res => res.data);
+        return payload;
+    }
+);
+
+// 댓글 등록하기
+export const fetchReply = createAsyncThunk(
+    'post/fetchReply',
+    async (data) => {
+        const { index } = data;
+        const payload = await axios.post(`/post/${index}/postReply`, data);
         return payload;
     }
 );
