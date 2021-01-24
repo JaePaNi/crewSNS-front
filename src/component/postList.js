@@ -1,14 +1,10 @@
 import React, { useState, useEffect, useCallback, useRef, useMemo } from 'react';
 import { Row, Col, Card, Image, Typography, Input, Button, Comment, Tooltip, Avatar } from 'antd';
-
 import { UserOutlined } from '@ant-design/icons';
-
 import styled from 'styled-components';
 import LazyLoad from 'react-lazyload';
-
 import { useDispatch, useSelector } from 'react-redux';
-
-import { fetchPost, registReply } from '../store/storeGetPost';
+import { fetchPost, registReply } from '../store/storePost';
 
 const { Meta } = Card;
 const { Title } = Typography;
@@ -18,7 +14,7 @@ const paragraphData = { rows: 3, expandable: true, symbol: <span>more</span> }
 
 const Post = () => {
     const dispatch = useDispatch();
-    const { Post, loading } = useSelector(state => state.storeGetPost);
+    const { Post, loading } = useSelector(state => state.storePost);
     const { isLogin, userNickname } = useSelector(state => state.storeUser);
 
     const [inputReply, setInputReply] = useState('');
