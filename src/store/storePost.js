@@ -56,13 +56,14 @@ const postSlice = createSlice({
         },
         [fetchPost.fulfilled]: (state, action) => {
             state.callPost = true;
-            state.Post = [];
+            // state.Post = [];
             state.PostImages = [];
             state.PostReply = [];
 
-            state.Post.push(...action.payload.content);
+            state.Post = state.Post.concat(...action.payload.content);
+            // state.Post.push(...action.payload.content);
             state.PostImages.push(...action.payload.image);
-            state.PostReply.push(...action.payload.reply);
+            // state.PostReply.push(...action.payload.reply);
         },
         [fetchPost.rejected]: (state, action) => {
             state.loading = false;

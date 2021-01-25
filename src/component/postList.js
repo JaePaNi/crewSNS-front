@@ -1,38 +1,22 @@
-import React, { useState, useEffect, useCallback, useRef, useMemo } from 'react';
-import { Row, Col, Card, Image, Typography, Input, Button, Comment, Tooltip, Avatar } from 'antd';
+import React, { useEffect } from 'react';
+import { Row, Col, Card, Typography } from 'antd';
 import styled from 'styled-components';
-import LazyLoad from 'react-lazyload';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchPost, fetchReply } from '../store/thunk/thunkPost';
+import { fetchPost } from '../store/thunk/thunkPost';
+
+import CoverImage from './coverImage'
+import Desc from './desc';
 
 const { Meta } = Card;
 const { Title } = Typography;
-const { Paragraph } = Typography;
-
-const paragraphData = { rows: 3, expandable: true, symbol: <span>more</span> }
 
 const Post = () => {
     const dispatch = useDispatch();
-    const { Post, callPost, PostImages, PostReply } = useSelector(state => state.storePost);
-    const { isLogin, userId } = useSelector(state => state.storeUser);
-
-    const [replyContent, setReplyContent] = useState('');
+    const { Post, callPost } = useSelector(state => state.storePost);
 
     useEffect(() => {
         dispatch(fetchPost());
-        
     }, []);
-
-    const onChangeReply = useCallback(e => {
-        setReplyContent(e.target.value);
-    }, []);
-
-    const onClickReply = useCallback(index => () => {
-        if (isLogin) {
-            replyContent !== '' && dispatch(fetchReply({ replyContent, userId, index }));
-            setReplyContent('');
-        } else alert('로그인이 필요합니다.');
-    }, [replyContent, isLogin]);
 
     return (
         callPost &&
@@ -41,6 +25,7 @@ const Post = () => {
                 {
                     Post.map((e, index) => (
                         <Cards
+                            key={index}
                             hoverable
                             style={{ maxWidth: '100%' }}
                             title={
@@ -49,56 +34,12 @@ const Post = () => {
                                     <Col md={21} xs={20}>{e.post_author}</Col>
                                 </Row>
                             }
-                            이미지 부분
-                            cover={
-                                <LazyLoad offset={100} scroll="true" placeholder={<div>loading...</div>} height="200px"
-                                    throttle={100}>
-                                    {PostImages.map(img => (
-                                        <Image.PreviewGroup>
-                                            <Image
-                                                height="400px"
-                                                src={e.post_id === img.image_author && img.image_link}
-                                            />
-                                        </Image.PreviewGroup>
-                                    ))}
-                                </LazyLoad>
-                            }
+                            cover={<CoverImage post={e} />}
                         >
                             <Meta
                                 title={<Title level={4}>{e.post_title}</Title>}
-                                description={
-                                    <Row>
-                                        <Col span={24}>
-                                            <Paragraph
-                                                ellipsis={paragraphData}>
-                                                {e.post_content}
-                                            </Paragraph>
-                                        </Col>
-                                        {/*댓글*/}
-                                        {
-                                            PostReply.map(reply => (
-                                                reply.reply_post_author === e.post_id &&
-                                                <Col span={24}>
-                                                    <Comment
-                                                        author={<span>{reply.reply_user_author}</span>}
-                                                        content={<p>{reply.reply_content}</p>}
-                                                        datetime={
-                                                            <Tooltip title={reply.reply_createdate}>
-                                                                <span>{reply.reply_createdate}</span>
-                                                            </Tooltip>
-                                                        }
-                                                    />
-                                                </Col>
-                                            ))
-                                        }
-                                        {/*댓글입력칸*/}
-                                        <Col md={20} xs={18}>
-                                            <Input onChange={onChangeReply} value={replyContent} placeholder="댓글..." bordered={false} onPressEnter={onClickReply(index)} />
-                                        </Col>
-                                        {/* 댓글등록버튼 */}
-                                        <Col md={4} xs={6}><Button onClick={onClickReply(e.post_id)} type="text">게시</Button></Col>
-                                    </Row>
-                                } />
+                                description={<Desc post={e} />}
+                            />
                         </Cards>
                     ))}
             </Col>

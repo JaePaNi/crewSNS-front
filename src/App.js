@@ -16,6 +16,7 @@ function App() {
     useEffect(() => {
         !isLogin && dispatch(fetchLoadUser());
     }, []);
+    
     return (
         <Row>
             <ColHeader span={24}>
