@@ -6,6 +6,7 @@ const initialState = {
     loading: false,
     error: false,
     createPost: false,
+    callPost: false,
     Post: [],
     PostImages: [],
     PostReply: [],
@@ -16,23 +17,13 @@ const postSlice = createSlice({
     name: 'post',
     initialState,
     reducers: {
-        registReply: ((state, action) => {
-            const { inputReply, userNickname, time, index } = action.payload;
-
-            state.Post[index].postReply.push({
-                replyUser: userNickname,
-                replyContent: inputReply,
-                replyCreateDate: time
-            });
-        }),
-
         removeImage: ((state, action) => {
             state.images = state.images.filter((i, v) => v !== action.payload);
         }),
 
         postStatus: ((state) => {
+            state.images = [];
             state.createPost = false;
-            state.image = [];
         }),
     },
     extraReducers: {
@@ -59,23 +50,24 @@ const postSlice = createSlice({
 
         // post불러오기
         [fetchPost.pending]: (state, action) => {
-            console.log(`pending :: ${action}`);
             state.loading = true;
+            state.error = false;
+            state.callPost = false;
         },
-        [fetchPost.fulfilled]: (state, action) => {            
+        [fetchPost.fulfilled]: (state, action) => {
+            state.callPost = true;
             state.Post = [];
             state.PostImages = [];
             state.PostReply = [];
 
             state.Post.push(...action.payload.content);
-            state.PostImages.push(...action.payload.image); 
+            state.PostImages.push(...action.payload.image);
             state.PostReply.push(...action.payload.reply);
         },
         [fetchPost.rejected]: (state, action) => {
-            // state.loading = false;
-            // state.error = true;
-            // state.Post = []
-            // console.log(`rejected :: ${action.error.message()}`);
+            state.loading = false;
+            state.error = true;
+            state.Post = [];
         },
 
         // 댓글 등록하기

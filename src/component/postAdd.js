@@ -16,7 +16,6 @@ const PostAdd = () => {
     const onChangeImage = useCallback(e => {
         const formData = new FormData();
         for (let i = 0; i < e.target.files.length; i++) {
-            console.log(e.target.files[i]);
             formData.append('image', e.target.files[i], e.target.files[i].name);
         }
         dispatch(fetchImages(formData));
@@ -42,9 +41,11 @@ const PostAdd = () => {
     }, []);
 
     useEffect(() => {
-        createPost && alert('포스트가 등록되었습니다.');
-        createPost && history.push('/');
-        dispatch(postStatus());
+        if(createPost) {
+            dispatch(postStatus());
+            alert('포스트가 등록되었습니다.');
+            history.push('/');
+        }
     }, [createPost]);
 
     useEffect(() => {

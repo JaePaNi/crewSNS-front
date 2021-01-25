@@ -1,10 +1,8 @@
 import React, { useState, useEffect, useCallback, useRef, useMemo } from 'react';
 import { Row, Col, Card, Image, Typography, Input, Button, Comment, Tooltip, Avatar } from 'antd';
-import { UserOutlined } from '@ant-design/icons';
 import styled from 'styled-components';
 import LazyLoad from 'react-lazyload';
 import { useDispatch, useSelector } from 'react-redux';
-// import { registReply } from '../store/storePost';
 import { fetchPost, fetchReply } from '../store/thunk/thunkPost';
 
 const { Meta } = Card;
@@ -15,13 +13,14 @@ const paragraphData = { rows: 3, expandable: true, symbol: <span>more</span> }
 
 const Post = () => {
     const dispatch = useDispatch();
-    const { Post, loading, PostImages, PostReply } = useSelector(state => state.storePost);
-    const { isLogin, userNickname, userId } = useSelector(state => state.storeUser);
+    const { Post, callPost, PostImages, PostReply } = useSelector(state => state.storePost);
+    const { isLogin, userId } = useSelector(state => state.storeUser);
 
     const [replyContent, setReplyContent] = useState('');
 
     useEffect(() => {
         dispatch(fetchPost());
+        
     }, []);
 
     const onChangeReply = useCallback(e => {
@@ -29,8 +28,6 @@ const Post = () => {
     }, []);
 
     const onClickReply = useCallback(index => () => {
-        // const time = new Date().getDate()
-        console.log('&&&&&&&&&', index);
         if (isLogin) {
             replyContent !== '' && dispatch(fetchReply({ replyContent, userId, index }));
             setReplyContent('');
@@ -38,7 +35,7 @@ const Post = () => {
     }, [replyContent, isLogin]);
 
     return (
-        loading &&
+        callPost &&
         <Row>
             <Col md={10} xs={24}>
                 {
@@ -54,7 +51,7 @@ const Post = () => {
                             }
                             이미지 부분
                             cover={
-                                <LazyLoad offset={100} scroll="true" placeholder={<div>loading...</div>} height="300px"
+                                <LazyLoad offset={100} scroll="true" placeholder={<div>loading...</div>} height="200px"
                                     throttle={100}>
                                     {PostImages.map(img => (
                                         <Image.PreviewGroup>
