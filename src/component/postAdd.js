@@ -76,7 +76,7 @@ const PostAdd = () => {
                         <div style={{ display: 'flex' }}>
                             {images.length !== 0 && images.map((e, index) => (
                                 <div>
-                                    <img src={`${process.env.REACT_APP_URL}/${e}`} width='100px' height='auto' />
+                                    <img src={e} width='100px' height='auto' />
                                     <div>
                                         <Button onClick={onClickRemoveImage(index)}>지우기</Button>
                                     </div>
