@@ -9,20 +9,6 @@ import NotLogin from './notLogin';
 const PostList = React.lazy(() => import('./postList'));
 
 const Main = () => {
-    const dispatch = useDispatch();
-    const onscroll = () => {
-        // console.log(window.scrollY, document.documentElement.clientHeight, document.documentElement.scrollHeight);
-        if(window.scrollY + document.documentElement.clientHeight > document.documentElement.scrollHeight - 300){
-            dispatch(fetchPost());
-        }
-    }
-
-    useEffect(() => {
-        window.addEventListener('scroll', onscroll);
-        return () => {
-            window.removeEventListener('scroll', onscroll);
-        }
-    }, []);
 
     // 로그인 여부를 확인한다. true or false
     const { isLogin } = useSelector(state => state.storeUser);

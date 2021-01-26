@@ -4,7 +4,7 @@ import { Row, Col, Form, Input, Button, Typography, Upload } from 'antd';
 import { UploadOutlined } from '@ant-design/icons';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchImages, fetchCreatePost } from '../store/thunk/thunkPost';
-import { removeImage, postStatus } from '../store/storePost';
+import { removeImage, postStatus, resetPost } from '../store/storePost';
 
 const PostAdd = () => {
     const clickImage = useRef();
@@ -28,6 +28,7 @@ const PostAdd = () => {
     const onFinish = useCallback(e => {
         const formData = new FormData();
         for (let i = 0; i < images.length; i++) {
+            console.log('image value :: ', images[i]);
             formData.append('images', images[i]);
         }
         formData.append('title', e.title);
@@ -41,8 +42,9 @@ const PostAdd = () => {
     }, []);
 
     useEffect(() => {
-        if(createPost) {
+        if (createPost) {
             dispatch(postStatus());
+            dispatch(resetPost());
             alert('포스트가 등록되었습니다.');
             history.push('/');
         }

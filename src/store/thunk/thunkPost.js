@@ -1,5 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
+import { useSelector } from "react-redux";
 
 axios.defaults.baseURL = process.env.REACT_APP_URL;
 
@@ -24,8 +25,8 @@ export const fetchImages = createAsyncThunk(
 // 포스트 불러오기
 export const fetchPost = createAsyncThunk(
     'post/fetchPost',
-    async () => {
-        const payload = await axios.get('/post/postCall').then(res => res.data);
+    async (arg) => {
+        const payload = await axios.get(`/post/postCall?skip=${arg}&take=${4}`).then(res => res.data);
         return payload;
     }
 );

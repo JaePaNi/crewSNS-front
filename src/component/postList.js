@@ -1,9 +1,8 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Row, Col, Card, Typography } from 'antd';
 import styled from 'styled-components';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchPost } from '../store/thunk/thunkPost';
-
 import CoverImage from './coverImage'
 import Desc from './desc';
 
@@ -12,10 +11,28 @@ const { Title } = Typography;
 
 const Post = () => {
     const dispatch = useDispatch();
-    const { Post, callPost } = useSelector(state => state.storePost);
+    const { Post, callPost, PostImages } = useSelector(state => state.storePost);
+    const [skip, setSkip] = useState(0);
+
+    const onscroll = () => {
+        const { scrollTop, scrollHeight, clientHeight } = document.documentElement;
+        if ((scrollTop + clientHeight) > scrollHeight - 5) {
+            console.log(`scrollTop :: ${scrollTop} scrollHeight :: ${scrollHeight} clientHeight :: ${clientHeight}`);
+            setSkip(skip + 4);
+            dispatch(fetchPost(skip));
+        }
+    }
 
     useEffect(() => {
-        dispatch(fetchPost());
+        window.addEventListener('scroll', onscroll);
+        return () => {
+            window.removeEventListener('scroll', onscroll);
+        }
+    }, [onscroll]);
+
+    useEffect(() => {
+        dispatch(fetchPost(skip));
+        setSkip(skip + 4);
     }, []);
 
     return (
@@ -34,7 +51,7 @@ const Post = () => {
                                     <Col md={21} xs={20}>{e.post_author}</Col>
                                 </Row>
                             }
-                            cover={<CoverImage post={e} />}
+                            cover={<CoverImage key={index} post={e} />}
                         >
                             <Meta
                                 title={<Title level={4}>{e.post_title}</Title>}

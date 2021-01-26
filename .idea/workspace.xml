@@ -1,7 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="750b8f28-4111-436d-933f-ba1b0edef054" name="Default Changelist" comment="" />
+    <list default="true" id="750b8f28-4111-436d-933f-ba1b0edef054" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.eslintcache" beforeDir="false" afterPath="$PROJECT_DIR$/.eslintcache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/component/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/main.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/component/postList.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/component/postList.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/store/storePost.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/storePost.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/store/thunk/thunkPost.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/thunk/thunkPost.js" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -39,7 +46,7 @@
     <property name="node.js.path.for.package.eslint" value="project" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="settings.editor.selected.configurable" value="editor.preferences.fonts.default" />
+    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
     <property name="ts.external.directory.path" value="C:\Program Files\JetBrains\WebStorm 2020.3.1\plugins\JavaScriptLanguage\jsLanguageServicesImpl\external" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
@@ -72,6 +79,7 @@
       <workItem from="1611104228735" duration="307000" />
       <workItem from="1611125862315" duration="4059000" />
       <workItem from="1611234942124" duration="4259000" />
+      <workItem from="1611624636318" duration="3937000" />
     </task>
     <servers />
   </component>

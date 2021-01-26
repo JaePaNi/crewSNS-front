@@ -1,6 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { fetchCreatePost, fetchImages, fetchPost, fetchReply } from './thunk/thunkPost';
-import axios from 'axios';
 
 const initialState = {
     loading: false,
@@ -24,6 +23,10 @@ const postSlice = createSlice({
         postStatus: ((state) => {
             state.images = [];
             state.createPost = false;
+        }),
+
+        resetPost: ((state) => {
+            state.Post = [];
         }),
     },
     extraReducers: {
@@ -52,23 +55,18 @@ const postSlice = createSlice({
         [fetchPost.pending]: (state, action) => {
             state.loading = true;
             state.error = false;
-            state.callPost = false;
         },
         [fetchPost.fulfilled]: (state, action) => {
             state.callPost = true;
-            // state.Post = [];
-            state.PostImages = [];
-            state.PostReply = [];
-
+            
             state.Post = state.Post.concat(...action.payload.content);
-            // state.Post.push(...action.payload.content);
-            state.PostImages.push(...action.payload.image);
-            // state.PostReply.push(...action.payload.reply);
+            state.PostImages = state.PostImages.concat(...action.payload.image);
+            state.PostReply = state.PostReply.concat(...action.payload.reply);
         },
         [fetchPost.rejected]: (state, action) => {
-            state.loading = false;
             state.error = true;
-            state.Post = [];
+            state.loading = false;
+            state.callPost = false;
         },
 
         // 댓글 등록하기
@@ -86,5 +84,5 @@ const postSlice = createSlice({
     }
 });
 
-export const { registReply, removeImage, postStatus } = postSlice.actions;
+export const { removeImage, postStatus, resetPost } = postSlice.actions;
 export default postSlice.reducer;
