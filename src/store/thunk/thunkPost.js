@@ -1,8 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
-import { useSelector } from "react-redux";
 
-axios.defaults.baseURL = process.env.REACT_APP_URL;
+axios.defaults.baseURL = process.env.REACT_APP_URL_AWS_EC2;
 
 // 포스트생성
 export const fetchCreatePost = createAsyncThunk(

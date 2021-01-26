@@ -1,7 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
-axios.defaults.baseURL = process.env.REACT_APP_URL;
+axios.defaults.baseURL = process.env.REACT_APP_URL_AWS_EC2;
 
 // 회원가입
 export const fetchRegist = createAsyncThunk(
