@@ -3,7 +3,7 @@ import { Image } from 'antd';
 import LazyLoad from 'react-lazyload';
 import { useSelector } from 'react-redux';
 
-const CoverImage = ({ post, img }) => {
+const CoverImage = ({ post }) => {
     const { PostImages, callPost } = useSelector(state => state.storePost);
     return (
         callPost &&

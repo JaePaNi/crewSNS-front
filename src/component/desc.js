@@ -38,11 +38,7 @@ const Desc = ({ post }) => {
                         <Comment
                             author={<span>{reply.reply_user_author}</span>}
                             content={<p>{reply.reply_content}</p>}
-                            datetime={
-                                <Tooltip title={reply.reply_createdate}>
-                                    <span>{reply.reply_createdate}</span>
-                                </Tooltip>
-                            }
+                            datetime={<Tooltip title={reply.reply_createdate}><span>{reply.reply_createdate}</span></Tooltip>}
                         />
                     </Col>
                 ))

@@ -11,7 +11,7 @@ const { Title } = Typography;
 
 const Post = () => {
     const dispatch = useDispatch();
-    const { Post, callPost, PostImages } = useSelector(state => state.storePost);
+    const { Post, callPost } = useSelector(state => state.storePost);
     const [skip, setSkip] = useState(0);
 
     const onscroll = () => {
